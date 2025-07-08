@@ -8,3 +8,5 @@
 
 [MusicXML 4.0](https://www.w3.org/2021/06/musicxml40/tutorial/introduction/)
 
+[osmd: musicxml渲染](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay)
+

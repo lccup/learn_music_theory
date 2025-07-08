@@ -1,3 +1,5 @@
 example/sample/
 example/mask_int8.npy
 example/output_masks.npy
+
+example/try/osmd/
