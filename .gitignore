@@ -3,3 +3,4 @@ example/mask_int8.npy
 example/output_masks.npy
 
 example/try/osmd/
+example/try/color_table_ggsci.html

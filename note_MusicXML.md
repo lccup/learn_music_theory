@@ -156,7 +156,7 @@
 <note>
     <pitch>              <!--音高-->
         <step>              <!--CDEFGAB-->
-        <alter>             <!--变音 0.5 为半音-->
+        <alter>             <!--变音 1 为升半音 负数为降-->
         <octave>            <!--第几组-->
 
     <voice>               <!--第几声部，默认为1-->
@@ -166,7 +166,15 @@
                           <!--故而多声部需要backup 和 forward，和弦需要chrod-->
 
     <stem>                <!--符杆方向 up down-->
-    <beam number="1">     <!--符梁，number为类型，表示几分音符的符梁，-->
+
+    <beam number="1">     <!--符梁-->
+                          <!--number为符梁的层级，配和content控制具体层级的符梁-->
+                          <!--  1表示第一根符梁，即八分音符的符梁-->
+                          <!--  2表示第一根符梁，即十六分分音符的符梁, 以此类推-->
+                          <!--content 可为 begin continue end-->
+                          <!--continue优先-->
+                          <!--若第一个为begin osmd不会显示符梁-->
+
 
     <tie type="start"/>   <!--连音线，音乐逻辑,type start end 标识开始和结束-->
 
@@ -215,6 +223,10 @@
                                     <!--若为left ，则其应在所有measure所有note的之前-->
                                     <!--若为right，则其应在所有measure所有note的之后-->
     <bar-style>                         <!--bar 样式，视觉逻辑-->
+                                        <!--heavy-light 左重右轻 前反复标记-->
+                                        <!--heavy-light 左重右轻 后反复标记-->
+                                        <!--轻重顺序应当与音乐逻辑匹配-->
+
     <repeat direction="forward"/>       <!--重复记号，音乐逻辑-->
                                         <!--forward并非表示向前重复，而是它是重复的起始-->
 ```
@@ -229,7 +241,7 @@
 
 <!--后反复标记-->
 <barline location="right">
-    <bar-style>heavy-light</bar-style>
+    <bar-style>light-heavy</bar-style>
     <repeat direction="backward"/>
 </barline>
 
@@ -240,6 +252,36 @@
     <ending type="stop"/>
 </barline>
 ```
+
+> 延音线
+
+
+```xml
+
+                                                <!--延音线起始-->
+<note>
+    <!--...-->
+    <tie type="start"/>                             <!--延音线，音乐逻辑-->
+    <notations>                                     <!--容器，容纳音符的音乐符号-->
+        <tied type="start" orientation="over"/>         <!--延音线，视觉逻辑-->
+                                                        <!--orientation over/under-->
+                                                        <!--控制延音线的位置 位于符头的上/下-->
+    </notations>
+    <!--...-->
+</note>
+
+
+                                                <!--延音线结束-->
+<note>
+    <!--...-->
+    <tie type="end"/>
+    <notations>
+        <tied type="end"/>
+    </notations>
+    <!--...-->
+</note>
+```
+
 
 # 非音符标记
 
